@@ -20,7 +20,7 @@ header {
 }
 
 .container {
-    height: 600px;
+    height: 700px;
     width: 500px;
     background-color: white;
     box-shadow: 8px 8px 20px #544fa3;
@@ -144,6 +144,28 @@ header {
     flex-flow: row-reverse;
 }
  
+.addroom{
+    color: black;
+    display: flex;
+}
+
+.addroom:link{
+    text-decoration: none;
+}
+
+.addroom:visited{
+    text-decoration: none;
+}
+
+.addroom:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.addroom:active{
+    text-decoration: none;
+}
+
 /* For Responsiveness of the page */
  
 @media screen and (max-width: 650px) {
@@ -202,6 +224,12 @@ header {
         height: 50px;
         width: 130px;
         font-size: 19px;
+    }
+
+    .showbtn{
+        height: 20px;
+        width: 60px;
+        font-size: 10px;
     }
 }
  
@@ -265,5 +293,11 @@ header {
         height: 50px;
         width: 130px;
         font-size: 19px;
+    }
+
+    .showbtn{
+        height: 20px;
+        width: 60px;
+        font-size: 10px;
     }
 }
