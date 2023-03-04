@@ -1,0 +1,200 @@
+.addroomcard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1100px;
+}
+
+.addroom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1050px;
+    width: 900px;
+    background-color: white;
+    box-shadow: 8px 8px 20px #544fa3;
+}
+
+.element{
+    width: 100%;
+    outline: none;
+    border: none;
+    color: rgb(77, 77, 77);
+    background-color: rgb(250, 250, 250);
+    border-radius: 50px;
+    padding: 0px 20px;
+}
+
+.clkbtn {
+    border-radius: 50px;
+    background-image: linear-gradient(to right,#03b5a5,#03b5a5);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.text{
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 0px;
+}
+
+input::file-selector-button {
+    border-radius: 50px;
+    background-image: linear-gradient(to right,#03b5a5,#03b5a5);
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.fileinp{
+    padding: 0px;
+    width: 230px;
+    height: 32px;
+    margin-left: 10px;
+}
+
+.roomcard{
+    height: 600px;
+}
+
+.addroombox{
+    height: 700px;
+}
+
+@media screen and (max-width: 920px){
+    .addroomcard{
+        height: 900px;
+    }
+    .addroom{
+        width: 500px;
+        height: 800px;
+    }
+    .element{
+        height: 40px;
+        width: 100%;
+    }
+    .text{
+        width: 440px;
+        height: 100%;
+    }
+    input::file-selector-button{
+        font-size: 15px;
+    }
+    .fileinp{
+        height: 32px;
+        width: 230px;
+    }
+
+    .roomcard{
+        height: 600px;
+        width: 600px;
+    }
+
+    .addroombox{
+        height: 700px;
+    }
+}
+
+@media screen and (max-width: 680px){
+    .addroomcard{
+        height: 850px;
+    }
+
+    .addroom{
+        width: 450px;
+        height: 750px;
+    }
+    .element{
+        height: 30px;
+        width: 100%;
+    }
+    .text{
+        width: 100%;
+        height: 100px;
+    }
+    .fileinp{
+        height: 32px;
+        width: 230px;
+    }
+
+    .roomcard{
+        height: 500px;
+        width: 400px;
+    }
+
+    .addroombox{
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .addroom{
+        width: 450px;
+        height: 700px;
+    }
+    .element{
+        height: 25px;
+        width: 100%;
+    }
+    .text{
+        height: 70px;
+        width: 100%;
+    }
+    .fileinp{
+        height: 32px;
+        width: 230px;
+    }
+
+    .roomcard{
+        height: 450px;
+        width: 350px;
+    }
+
+    .addroombox{
+        height: 550px;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .addroomcard{
+        height: 600px;
+    }
+
+    .addroom{
+        width: 250px;
+        height: 500px;
+        font-size: 10px;
+    }
+    .element{
+        height: 15px;
+        width: 100%;
+    }
+    .text{
+        height: 40px;
+        width: 100%;
+    }
+    input::file-selector-button{
+        font-size: 10px;
+    }
+    .fileinp{
+        height: 23px;
+        width: 150px;
+    }
+
+    .roomcard{
+        height: 350px;
+        width: 270px;
+    }
+
+    .addroombox{
+        height: 450px;
+    }
+
+    .showbtn{
+        font-size: 10px;
+    }
+}
