@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1050px;
+    height: 1030px;
     width: 900px;
     background-color: white;
     box-shadow: 8px 8px 20px #544fa3;
@@ -34,7 +34,7 @@
     padding: 10px 20px;
 }
 
-.text{
+.textarea{
     width: 100%;
     padding-top: 20px;
     padding-left: 20px;
@@ -77,7 +77,7 @@ input::file-selector-button {
         height: 40px;
         width: 100%;
     }
-    .text{
+    .textarea{
         width: 440px;
         height: 100%;
     }
@@ -112,7 +112,7 @@ input::file-selector-button {
         height: 30px;
         width: 100%;
     }
-    .text{
+    .textarea{
         width: 100%;
         height: 100px;
     }
@@ -140,7 +140,7 @@ input::file-selector-button {
         height: 25px;
         width: 100%;
     }
-    .text{
+    .textarea{
         height: 70px;
         width: 100%;
     }
@@ -173,7 +173,7 @@ input::file-selector-button {
         height: 15px;
         width: 100%;
     }
-    .text{
+    .textarea{
         height: 40px;
         width: 100%;
     }
