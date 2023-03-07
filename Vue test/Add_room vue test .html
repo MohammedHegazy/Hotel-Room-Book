@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Room</title>
+    <link rel="stylesheet" href="/Hotel Adminstrator/CSS/Add_Room.CSS">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+     <!--navbar-->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="home vue test.html"><img src="/واجهات/logo.png" alt="" height="60px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="home vue test.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Orders vue test.html">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Accept_Order vue test.html">Add order</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Rooms vue test.HTML">Rooms</a>
+        </li>
+      </ul>
+    </div>  
+  </nav>
+
+  <div class="addroomcard addroombox">
+    <div class="addroom roomcard">
+      <form action="">
+        <div id="greet">
+        <table class="table table-responsive form-section" align="center">
+          <thead class="thead-light">
+            <tr>
+              <th><p>Number of room</p><input type="text" class="element" v-model="roomnum"></th>
+              <th><p>Price</p><input type="text" class="element" v-model="price"></th>
+            </tr>
+            <tr>
+              <th><p>Number of people</p><input type="number" class="element"v-model="numofppl" ></th>
+              <th><p>classification</p> <select class="element">
+                <option v-for="roomclass in roomsclass" :selected="roomclass.selected" @click="selectedItem(roomclass.class)"> {{roomclass.class}} </option>
+            </select></th>
+            </tr>
+            <tr>
+              <th colspan="2"><p>Category</p>  <textarea name="" id="" cols="90" rows="3" class="element textarea"  v-model="description"></textarea></th>
+            </tr>
+            <tr>
+              <th colspan="2">images<input type="file" class="element fileinp"></th>
+            </tr>
+          </thead>
+          <tr align="center" >
+              <th colspan="2">
+                <input  class="clkbtn showbtn"  id="sub" type="button" value="Send">
+              </th>
+            </tr>
+        </table>
+    </div>
+</form>
+    </div>
+</div> 
+<script>
+          Vue.createApp({
+            data() {
+                return {
+                  roomsclass:[
+                    {
+                      class: 'vip',
+                      selected: true,
+                    },
+                    {
+                      class: 'suite',
+                      selected: false,
+                    },
+                    {
+                      class: 'room',
+                      selected: false,
+                    }
+                  ],
+                  description:'Hello this is vue test',
+                    roomnum:"",
+                    price:"",
+                    numofppl:"",
+                }
+            },
+            methods: {
+              selectedItem: function(selectedclass){
+                for(i=0;i<this.roomsclass.length;i++){
+                  if(this.roomsclass[i].class!=selectedclass){
+                    this.roomsclass[i].selected=false;
+                  }
+                  else{
+                    this.roomsclass[i].selected=true;
+                  }
+                }
+              }
+            },
+        }).mount('#greet')
+</script>
+</body>
+</html>
