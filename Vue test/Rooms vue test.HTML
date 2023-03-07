@@ -5,6 +5,7 @@
   <title>Rooms</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/Hotel Adminstrator/CSS/Add_Room.CSS">
   <link rel="stylesheet" href="/Login and Signup/CSS/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
@@ -31,9 +32,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Rooms vue test.HTML">Rooms</a>
-      </li>       
+      </li>      
     </ul>
-  </div>  
+  </div>
 </nav>
 <!--Roomms card-->
 <form action="">
@@ -44,11 +45,12 @@
     <div class="form-section table-responsive">
       <div class="addroomdiv">
         <a href="Add_room vue test .html" class="clkbtn showbtn addcard addroom">Add Room</a>
+        <input type="text" class="element showbtn addcard addroom" placeholder="Search..." style="width: 400px; background-color: rgb(220, 220, 220); margin-right: 20%;" v-model="findroomnum">
       </div>
         <!-- card form -->
             <table class="table">
               <thead class="thead-light">
-                <tr v-for="roomnumber in roomsnumber">
+                <tr v-for="roomnumber in filterroomnum">
                   <th>{{ roomnumber }}</th>
                   <th>Room details</th>
                   <th><a href="Edit room vue test.HTMl" class="clkbtn showbtn addcard addroom">Show</a></th>
@@ -62,13 +64,23 @@
 <script src="/Login and Signup/JS/main.js"></script>
 <script>
     Vue.createApp({
+      el:'#greet',
         data() {
             return {
+              findroomnum:'',
                 roomsnumber:[
-                    101,102,103,104
+                    '101','102','103','104','105','106',
                 ],
             }
         },
+        computed:{
+          filterroomnum: function(){
+            var filtering = new RegExp(this.findroomnum,'i');
+            return this.roomsnumber.filter(function(el){
+              return el.match(filtering);
+            })
+          }
+        }
     }).mount('#greet')
 </script>
 </form>
