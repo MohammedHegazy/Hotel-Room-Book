@@ -1,70 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Orders</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/Login and Signup/CSS/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/Hotel Adminstrator/CSS/Add_Room.CSS">
+    <link rel="stylesheet" href="/Login and Signup/CSS/style.css">
+    <link rel="stylesheet" href="/Login and Signup/CSS/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
-    <!--navbar-->
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a class="navbar-brand" href="home vue test.html"><img src="/واجهات/logo.png" alt="" height="60px"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="home vue test.html">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Orders vue test.html">Orders</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Accept_Order vue test.html">Add order</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Rooms vue test.HTML">Rooms</a>
-      </li>       
-    </ul>
-  </div>  
-</nav>
+    <div id="greet">
+        <!--navbar-->
+        <script src="JS/Navbar.JS"></script>
+        <script src="JS/Search bar.js"></script>
         <form action="">
-        <div class="container roomcon" id="greet">
-  
-    <div class="form-section table-responsive">
-      
-            <table class="table">
-              <thead class="thead-light">
-                <tr v-for="roomnumber in roomsnumber">
-                    <th>{{ roomnumber }}</th>
-                  <th>Room details</th>
-                  <th>book details</th>
-                  <th><button class="clkbtn showbtn">Accept</button></th>
-                  <th><button class="clkbtn showbtn">Reject</button></th>
-                </tr>
-            </thead>
-        </table>
+            <div class="container roomcon" id="greet">
+
+                <div class="form-section table-responsive">
+
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr v-for="roomnumber in filterroomnum">
+                                <th>{{ roomnumber }}</th>
+                                <th>Room details</th>
+                                <th>book details</th>
+                                <th><button class="clkbtn showbtn" style="padding: 0;">Accept</button></th>
+                                <th><button class="clkbtn showbtn" style="padding: 0;">Reject</button></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
     </div>
-    </div>
-</form>
+
     <script src="/Login and Signup/JS/main.js"></script>
-    <script>
-        Vue.createApp({
-            data() {
-                return {
-                    roomsnumber:[
-                        101,102,103,104
-                    ],
-                }
-            },
-        }).mount('#greet')
-    </script>
+    <script src="JS/filter.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,1 @@
+document.write('<div style="display:flex; justify-content: center;align-items: center; margin-top:10px"><input type="text" class="element showbtn addcard addroom" placeholder="Search..." style="width: 400px; background-color: rgb(220, 220, 220); height:30px; margin-top:10px; width:80%;" v-model="findroomnum"></div>')
