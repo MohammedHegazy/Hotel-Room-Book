@@ -21,6 +21,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/orders">Orders</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/acceptorder">Accept order</router-link>
+          </li>
         </ul>
       </div>
     </nav>

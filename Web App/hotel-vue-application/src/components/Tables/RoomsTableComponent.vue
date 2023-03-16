@@ -18,20 +18,16 @@
             <tr v-for="room in filterroom" :key="room.roomnum" class="tablerow">
               <th>{{ room.roomnum }}</th>
               <th>{{ room.roomdetail }}</th>
-              <th><a href="Edit room vue test.HTMl" class="clkbtn">Show</a></th>
+              <th><router-link to="/editroom" class="clkbtn">Show</router-link></th>
               <th><a href="" class="clkbtn">Maintenance</a></th>
               <th><a href="" class="clkbtn">Delete</a></th>
             </tr>
           </thead>
         </table>
         <div class="addroomdiv">
-          <a
-            href="Add_room vue test .html"
-            class="clkbtn"
-            style="margin-bottom: 12px;"
-          >
+          <router-link to="/addroom" class="clkbtn" style="margin-bottom: 12px;">
             Add Room
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
@@ -114,6 +110,7 @@ table {
   background-image: linear-gradient(to right, #03b5a5, #03b5a5);
   border: none;
   cursor: pointer;
+  text-align: center;
 }
 a {
   color: black;
