@@ -4,10 +4,12 @@ import ViewRooms from "../views/ViewRooms.vue";
 import ViewOrder from '../views/ViewOrders.vue';
 import AcceptOrder from '../views/ViewAcceptOrder.vue';
 import AddRoom from "../views/AddRoomTable.vue";
-import EditRoom from "../views/ViewEditRoom.vue"
+import EditRoom from "../views/ViewEditRoom.vue";
+import Profile from "../views/ViewProfileAdmin.vue";
+import Login from "@/views/ViewLogin.vue";
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "home",
     component: HomeView,
   },
@@ -35,6 +37,16 @@ const routes = [
     path:"/editroom",
     name:"editroom",
     component:EditRoom,
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+  },
+  {
+    path: "/",
+    name: "login",
+    component: Login,
   },
 ];
 

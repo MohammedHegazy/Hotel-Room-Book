@@ -1,5 +1,6 @@
 <template>
   <div class="addroom">
+    <NavBar />
     <div class="container" style="width: fit-content;">
       <form action="" @submit="onSubmit">
           <table class="table table-responsive form-section" align="center">
@@ -52,7 +53,7 @@
                   images
                   <input
                     type="file"
-                    class="element"
+                    class="element addfile"
                     multiple
                     ref="file"
                   />
@@ -77,9 +78,12 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 export default {
   name: 'AddRoom',
-  fileInput: '#file-input',
+  components:{
+    NavBar,
+  },
   data() {
     return {
       roomsclass: [

@@ -1,5 +1,6 @@
 <template>
   <div class="addroom">
+    <NavBar />
     <div class="container" style="width: fit-content;">
       <form action="" @submit="onSubmit">
         <table class="table table-responsive form-section" align="center">
@@ -79,7 +80,7 @@
                       v-for="arrayimage in arrayimages"
                       :key="arrayimage"
                     >
-                      <div class="container">
+                      <div class="containerimg">
                         <img
                           class="d-block w-100 image"
                           :src="arrayimage.source"
@@ -137,9 +138,12 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 export default {
   name: 'AddRoom',
-  fileInput: '#file-input',
+  components: {
+    NavBar,
+  },
   data() {
     return {
       roomsclass: [
@@ -220,18 +224,12 @@ export default {
   text-align: center;
 }
 
-.container:hover .image {
+.containerimg:hover .image {
   opacity: 0.7;
 }
 
-.container:hover .middle {
+.containerimg:hover .middle {
   opacity: 1;
 }
 
-.text {
-  background-color: #04aa6d;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
-}
 </style>

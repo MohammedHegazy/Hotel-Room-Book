@@ -1,4 +1,5 @@
 <template>
+<NavBar />
   <div class="home">
     <div class="table-card">
       <div class="table-background">
@@ -35,10 +36,11 @@
 
 <script>
 import Graphiccard from '@/components/Graphiccard.vue'
-
+import NavBar from '@/components/NavBar.vue';
 export default {
   components: {
     Graphiccard,
+    NavBar,
   },
 }
 </script>
