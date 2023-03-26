@@ -8,26 +8,13 @@
             <thead class="thead-light">
               <tr>
                 <th display="block" style="width: 600px;" colspan="2">
-                  <div
-                    id="carouselExampleIndicators"
-                    class="carousel slide"
-                    data-ride="carousel"
-                  >
+                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
                         <div class="containerimg">
-                          <img
-                            class="d-block w-100 image"
-                            :src="src"
-                            alt="First slide"
-                          />
+                          <img class="d-block w-100 image" :src="src" alt="First slide" />
                           <div class="middle">
-                            <input
-                              id="editpf"
-                              type="file"
-                              class="element addfile"
-                              ref="file"
-                            />
+                            <input id="editpf" type="file" class="element addfile" ref="file" />
                           </div>
                         </div>
                       </div>
@@ -36,81 +23,50 @@
                 </th>
               </tr>
               <tr>
-                <th>
+                <th colspan="2">
                   <p>Owner name :</p>
                   <input type="text" class="element" v-model="owner_name" />
                 </th>
+              </tr>
+              <tr>
                 <th>
                   <p>Email :</p>
-                  <input
-                    type="email"
-                    class="element"
-                    v-model="email"
-                    placeholder="toto@toto.com"
-                  />
+                  <input type="email" class="element" v-model="email" placeholder="toto@toto.com" />
+                </th>
+                <th>
+                  <p>Password:</p>
+                  <input type="password" class="element" v-model="password">
                 </th>
               </tr>
               <tr>
                 <th>
                   <p>Phone number :</p>
-                  <input
-                    type="text"
-                    class="element"
-                    v-model="phnum"
-                    placeholder="+963932587298"
-                  />
+                  <input type="text" class="element" v-model="phnum" placeholder="+963932587298" />
                 </th>
                 <th>
                   <p>Address :</p>
-                  <input
-                    type="text"
-                    class="element"
-                    v-model="address"
-                    placeholder="Syria Damascus,Alhamra"
-                  />
+                  <input type="text" class="element" v-model="address" placeholder="Syria Damascus,Alhamra" />
                 </th>
               </tr>
               <tr>
                 <th>
                   <p>Rating :</p>
-                  <input
-                    type="text"
-                    class="element"
-                    v-model="rating"
-                    placeholder="3"
-                  />
+                  <input type="text" class="element" v-model="rating" placeholder="3" />
                 </th>
                 <th>
                   <p>Room number :</p>
-                  <input
-                    type="text"
-                    class="element"
-                    v-model="room_num"
-                    placeholder="220"
-                  />
+                  <input type="text" class="element" v-model="room_num" placeholder="220" />
                 </th>
               </tr>
               <tr>
                 <th colspan="2">
                   <p>Description :</p>
-                  <textarea
-                    cols="90"
-                    rows="3"
-                    class="element"
-                    v-model="description"
-                    style="border-radius: 0;"
-                  ></textarea>
+                  <textarea cols="90" rows="3" class="element" v-model="description" style="border-radius: 0;"></textarea>
                 </th>
               </tr>
               <tr align="center">
                 <th colspan="2">
-                  <input
-                    class="clkbtn"
-                    id="sub"
-                    type="submit"
-                    value="Save"
-                    style="padding-bottom: 30px;"
-                  />
+                  <input class="clkbtn" id="sub" type="submit" value="Save" style="padding-bottom: 30px;" />
                 </th>
               </tr>
             </thead>
@@ -133,39 +89,36 @@ export default {
   data() {
     return {
       owner_name: '',
-      hotel_name: '',
       email: '',
       phnum: '',
       address: '',
       rating: '',
       room_num: '',
       description: '',
+      password: '',
       src: require('../Images/Room Images/pexels-pixabay-355948.jpg'),
     }
   },
   methods: {
     onSubmit() {
-      axios.post('http://wam3.tech/hotel/public/api/auth/hotel/Update',{
-        token: localStorage.getItem('token'),
-        params: {
-          'name': this.owner_name,
-          'hotel_name': 'this.hotel_name',
-          'email': this.email,
-          'phone': this.phnum,
-          'address': this.address,
-          'offical_rating': this.rating,
-          'room_numbers': this.room_num,
-          'description': this.description,
-          'password': '1234567',
-          'image': 'qwegrt',
-          'long': '425.25',
-          'lat':'24.3',
-
-        },
+      axios.post('http://wam3.tech/hotel/public/api/auth/hotel/Update', {
+        'token': localStorage.getItem('token'),
+        'name': this.owner_name,
+        'hotel_name': 'hotel name',
+        'email': this.email,
+        'phone': this.phnum,
+        'address': this.address,
+        'offical_rating': this.rating,
+        'room_numbers': this.room_num,
+        'description': this.description,
+        'password': this.password,
+        'image': 'qwegrt',
+        'long': '425.25',
+        'lat': '24.3',
       }).then((response) => {
         console.log(response.data.data.status)
         router.push('/profile')
-      }).catch((e)=>{
+      }).catch((e) => {
         console.log(e.message)
         console.log(e)
       })

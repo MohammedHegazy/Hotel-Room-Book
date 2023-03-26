@@ -86,7 +86,7 @@
           method: 'get',
           url: 'http://wam3.tech/hotel/public/api/auth/hotel/profile',
           params: {
-            token: localStorage.getItem('token'),
+            'token': localStorage.getItem('token'),
           },
         })
           .then((response) => {

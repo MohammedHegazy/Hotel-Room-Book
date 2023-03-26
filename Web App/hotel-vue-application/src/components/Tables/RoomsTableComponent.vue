@@ -1,4 +1,5 @@
 <template>
+  {{ showrooms() }}
   <form @load="showrooms()">
     <div class="container">
       <div style="margin-top: 20px;">
@@ -93,7 +94,7 @@ export default {
         }
       }).then((response)=>{
         console.log(response.data.status)
-        this.rooms=response.data.Rooms
+        this.rooms=response.data.data.Rooms
       }).catch((e)=>{
         console.log(e.message)
       })

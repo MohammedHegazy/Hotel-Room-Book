@@ -1,4 +1,5 @@
 <template>
+  {{ categoies() }}
   <div class="addroom">
     <NavBar />
     <div class="container" style="width: fit-content;">
@@ -25,11 +26,9 @@
                 <select class="element">
                   <option
                     v-for="roomclass in roomsclass"
-                    :selected="roomclass.selected"
-                    @click="selectedItem(roomclass.class)"
                     :key="roomclass"
                   >
-                    {{ roomclass.class }}
+                    {{ roomclass.name }}
                   </option>
                 </select>
               </th>
@@ -79,6 +78,7 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import axios from 'axios'
 export default {
   name: 'AddRoom',
   components: {
@@ -86,20 +86,7 @@ export default {
   },
   data() {
     return {
-      roomsclass: [
-        {
-          class: 'vip',
-          selected: true,
-        },
-        {
-          class: 'suite',
-          selected: false,
-        },
-        {
-          class: 'room',
-          selected: false,
-        },
-      ],
+      roomsclass: [],
       description: 'Hello this is vue test',
       roomnum: '',
       price: '',
@@ -107,15 +94,30 @@ export default {
     }
   },
   methods: {
-    selectedItem: function (selectedclass) {
-      for (var i = 0; i < this.roomsclass.length; i++) {
-        if (this.roomsclass[i].class != selectedclass) {
-          this.roomsclass[i].selected = false
-        } else {
-          this.roomsclass[i].selected = true
-        }
-      }
+    categoies(){
+      axios({
+        method: 'get',
+          url :'http://wam3.tech/hotel/public/api/auth/hotel/showCategories' ,
+          params: {
+            'token': localStorage.getItem('token'),
+          }
+      }).then((response)=>{
+        console.log(response.data.data.status)
+        this.roomsclass=response.data.data.data
+      }).catch((e)=>{
+        console.log(e.message)
+      })
     },
+   
+    // selectedItem: function (selectedclass) {
+    //   for (var i = 0; i < this.roomsclass.length; i++) {
+    //     if (this.roomsclass[i].class != selectedclass) {
+    //       this.roomsclass[i].selected = false
+    //     } else {
+    //       this.roomsclass[i].selected = true
+    //     }
+    //   }
+    // },
     onSubmit(e) {
       const file = this.$refs.file.files[0]
 
