@@ -2,7 +2,7 @@
   <div class="addroom">
     <NavBar />
     <div class="container" style="width: fit-content;">
-      <form action="" @submit="onSubmit">
+      <form action="" @submit.prevent="onSubmit">
         <table class="table table-responsive form-section" align="center">
           <thead class="thead-light">
             <tr>
@@ -139,6 +139,7 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+
 export default {
   name: 'AddRoom',
   components: {
@@ -161,9 +162,9 @@ export default {
         },
       ],
       description: 'Hello this is vue test',
-      roomnum: 111,
-      price: 200,
-      numofppl: 4,
+      roomnum: '111',
+      price: '200',
+      numofppl: '4',
       arrayimages: [
         {
           imgnum: true,
@@ -181,6 +182,7 @@ export default {
           source: require('../Images/Room Images/pexels-pixabay-355948.jpg'),
         },
       ],
+      errors: null,
     }
   },
   methods: {
@@ -193,14 +195,27 @@ export default {
         }
       }
     },
-    onSubmit(e) {
-      const file = this.$refs.file.files[0]
+     onSubmit(e) {
+      const file = this.$refs.file.files[0];
       if (file.size / 1024 ** 2 >= 2) {
         e.preventDefault()
         alert('File should be less than 2MB')
         return
       }
     },
+   submitForm(){
+    const errors = {};
+      if(!this.roomnum){
+        alert ( 'This field is required');
+      }
+      if (Object.keys(errors).length > 0) {
+        this.errors = errors;
+        return;
+      } else {
+        this.errors = null;
+      }
+  },
+
   },
 }
 </script>

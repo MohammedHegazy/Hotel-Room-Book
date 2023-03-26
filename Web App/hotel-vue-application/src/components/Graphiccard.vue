@@ -21,7 +21,7 @@ export default {
           {
             type: 'line',
             label: 'Linear scale',
-            data: [10, 50, 70, 50],
+            data: [1, 5.5, 8, 5],
           },
         ],
         labels: ['2000', '2001', '2002', '2003'],

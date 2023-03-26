@@ -37,10 +37,13 @@
 <script>
 import Graphiccard from '@/components/Graphiccard.vue'
 import NavBar from '@/components/NavBar.vue';
+
 export default {
   components: {
     Graphiccard,
     NavBar,
+  },
+  methods: {
   },
 }
 </script>

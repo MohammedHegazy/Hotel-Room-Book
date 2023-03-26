@@ -15,6 +15,11 @@
         <!-- card form -->
         <table class="table">
           <thead class="thead-light">
+            <tr class="tablerow">
+              <th>Order number</th>
+              <th>Room number</th>
+              <th>Book detail</th>
+            </tr>
             <tr
               v-for="order in filterorder"
               :key="order.ordernum"
@@ -32,6 +37,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'OrdersTable',
   data() {
@@ -73,5 +80,8 @@ export default {
       )
     },
   },
+  methods:{
+    
+  }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <form action="">
+  <form @load="showrooms()">
     <div class="container">
       <div style="margin-top: 20px;">
         <input
@@ -15,6 +15,13 @@
         <!-- card form -->
         <table class="table">
           <thead class="thead-light">
+            <tr class="tablerow">
+              <th>Room number</th>
+              <th>Room detail</th>
+              <th style="width: 120px;">Show room</th>
+              <th style="width: 120px;">Maintenance</th>
+              <th style="width: 120px;">Delete room</th>
+            </tr>
             <tr v-for="room in filterroom" :key="room.roomnum" class="tablerow">
               <th>{{ room.roomnum }}</th>
               <th>{{ room.roomdetail }}</th>
@@ -35,6 +42,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'RoomsTable',
   data() {
@@ -75,6 +83,22 @@ export default {
       )
     },
   },
+  methods:{
+    showrooms(){
+      axios({
+        method:'get',
+        url:'http://wam3.tech/hotel/public/api/auth/hotel/getRoomsByHotel',
+        params:{
+          'token':localStorage.getItem('token')
+        }
+      }).then((response)=>{
+        console.log(response.data.status)
+        this.rooms=response.data.Rooms
+      }).catch((e)=>{
+        console.log(e.message)
+      })
+    },
+  },
 }
 </script>
 
@@ -112,6 +136,7 @@ table {
   cursor: pointer;
   text-align: center;
 }
+
 a {
   color: black;
   display: flex;

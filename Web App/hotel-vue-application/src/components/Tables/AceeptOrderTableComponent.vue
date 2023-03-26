@@ -1,4 +1,5 @@
 <template>
+    {{ Onload() }}
   <form action="">
     <div class="container">
       <div class="form-section table-responsive">
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
   name: 'AcceptOrdersTable',
   data() {
@@ -70,6 +73,13 @@ export default {
       return this.orders.filter((order) =>
         order.ordernum.includes(this.findorder),
       )
+    },
+  },
+  methods:{
+    Onload() {
+      if (!localStorage.getItem('token')) {
+        return router.push({ path: '/' })
+      }
     },
   },
 }
