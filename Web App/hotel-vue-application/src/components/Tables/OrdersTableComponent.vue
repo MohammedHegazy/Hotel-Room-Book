@@ -1,4 +1,5 @@
 <template>
+  {{ showbooking() }}
   <form action="">
     <div class="container">
       <div style="margin-top: 20px;">
@@ -16,18 +17,22 @@
         <table class="table">
           <thead class="thead-light">
             <tr class="tablerow">
-              <th>Order number</th>
+              <th>Order ID</th>
               <th>Room number</th>
-              <th>Book detail</th>
+              <th>user</th>
+              <th>number of people</th>
+              <th>total price</th>
             </tr>
             <tr
-              v-for="order in filterorder"
-              :key="order.ordernum"
+              v-for="order in orders"
+              :key="order.id"
               class="tablerow"
             >
-              <th>{{ order.ordernum }}</th>
-              <th>{{ order.roomnum }}</th>
-              <th>{{ order.bookdetail }}</th>
+              <th>{{ order.id }}</th>
+              <th>{{ order.rooms_id }}</th>
+              <th>{{ order.user_id }}</th>
+              <th>{{ order.number_of_people }}</th>
+              <th>{{ order.totla_price }}</th>
             </tr>
           </thead>
         </table>
@@ -37,51 +42,37 @@
 </template>
 
 <script>
-
-
+import axios from 'axios'
 export default {
   name: 'OrdersTable',
   data() {
     return {
       findorder: '',
-      orders: [
-        {
-          ordernum: '1',
-          roomnum: '102',
-          bookdetail: 'book detail',
-        },
-        {
-          ordernum: '2',
-          roomnum: '103',
-          bookdetail: 'book detail',
-        },
-        {
-          ordernum: '3',
-          roomnum: '104',
-          bookdetail: 'book detail',
-        },
-        {
-          ordernum: '5',
-          roomnum: '105',
-          bookdetail: 'book detail',
-        },
-        {
-          ordernum: '6',
-          roomnum: '106',
-          bookdetail: 'book detail',
-        },
-      ],
+      orders: [],
     }
   },
-  computed: {
-    filterorder() {
-      return this.orders.filter((order) =>
-        order.ordernum.includes(this.findorder),
-      )
-    },
-  },
+  // computed: {
+  //   filterorder() {
+  //     return this.orders.filter((order) =>
+  //       order.ordernum.includes(this.findorder),
+  //     )
+  //   },
+  // },
   methods:{
-    
+    showbooking(){
+      axios({
+        method:'get',
+        url:'http://wam3.tech/hotel/public/api/auth/hotel/showBookingByStatus',
+        params:{
+          'token':localStorage.getItem('token')
+        }
+      }).then((response)=>{
+        console.log(response.data.status)
+        this.orders=response.data.AcceptBooks
+      }).catch((e)=>{
+        console.log(e.message)
+      })
+    },
   }
 }
 </script>

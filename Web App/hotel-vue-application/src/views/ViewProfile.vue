@@ -90,7 +90,7 @@
           },
         })
           .then((response) => {
-            console.log(response)
+            console.log(response.data.status)
             this.owner_name = response.data.data.name
             this.hotel_name = response.data.data.hotel_name
             this.email = response.data.data.email

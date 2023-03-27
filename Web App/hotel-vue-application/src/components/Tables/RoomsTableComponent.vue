@@ -1,6 +1,6 @@
 <template>
   {{ showrooms() }}
-  <form @load="showrooms()">
+  <form>
     <div class="container">
       <div style="margin-top: 20px;">
         <input
@@ -18,14 +18,18 @@
           <thead class="thead-light">
             <tr class="tablerow">
               <th>Room number</th>
-              <th>Room detail</th>
+              <th>Room capacity</th>
+              <th>Room floor</th>
+              <th>Room price</th>
               <th style="width: 120px;">Show room</th>
               <th style="width: 120px;">Maintenance</th>
               <th style="width: 120px;">Delete room</th>
             </tr>
-            <tr v-for="room in filterroom" :key="room.roomnum" class="tablerow">
-              <th>{{ room.roomnum }}</th>
-              <th>{{ room.roomdetail }}</th>
+            <tr v-for="room in rooms" :key="room.room_number" class="tablerow">
+              <th>{{ room.room_number }}</th>
+              <th>{{ room.capacity }}</th>
+              <th>{{ room.floor }}</th>
+              <th>{{ room.price }}</th>
               <th><router-link to="/editroom" class="clkbtn">Show</router-link></th>
               <th><a href="" class="clkbtn">Maintenance</a></th>
               <th><a href="" class="clkbtn">Delete</a></th>
@@ -49,41 +53,16 @@ export default {
   data() {
     return {
       findroomnum: '',
-      rooms: [
-        {
-          roomnum: '101',
-          roomdetail: 'room detail',
-        },
-        {
-          roomnum: '102',
-          roomdetail: 'room detail',
-        },
-        {
-          roomnum: '103',
-          roomdetail: 'room detail',
-        },
-        {
-          roomnum: '104',
-          roomdetail: 'room detail',
-        },
-        {
-          roomnum: '105',
-          roomdetail: 'room detail',
-        },
-        {
-          roomnum: '106',
-          roomdetail: 'room detail',
-        },
-      ],
+      rooms: [],
     }
   },
-  computed: {
-    filterroom() {
-      return this.rooms.filter((room) =>
-        room.roomnum.includes(this.findroomnum),
-      )
-    },
-  },
+  // computed: {
+  //   filterroom() {
+  //     return this.rooms.filter((room) =>
+  //       room.roomnum.includes(this.findroomnum),
+  //     )
+  //   },
+  // },
   methods:{
     showrooms(){
       axios({
@@ -94,7 +73,7 @@ export default {
         }
       }).then((response)=>{
         console.log(response.data.status)
-        this.rooms=response.data.data.Rooms
+        this.rooms=response.data.Rooms
       }).catch((e)=>{
         console.log(e.message)
       })

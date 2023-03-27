@@ -103,7 +103,7 @@ export default {
           }
       }).then((response)=>{
         console.log(response.data.data.status)
-        this.roomsclass=response.data.data.data
+        this.roomsclass=response.data.data
       }).catch((e)=>{
         console.log(e.message)
       })
