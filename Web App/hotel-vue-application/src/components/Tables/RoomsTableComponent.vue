@@ -1,5 +1,4 @@
 <template>
-  {{ showrooms() }}
   <form>
     <div class="container">
       <div style="margin-top: 20px;">
@@ -16,7 +15,7 @@
         <!-- card form -->
         <table class="table">
           <thead class="thead-light">
-            <tr class="tablerow">
+            <tr class="tablerow" @mouseover="showrooms()">
               <th>Room number</th>
               <th>Room capacity</th>
               <th>Room floor</th>
@@ -73,7 +72,8 @@ export default {
         }
       }).then((response)=>{
         console.log(response.data.status)
-        this.rooms=response.data.Rooms
+        console.log(response)
+        this.rooms=response.data.data.Rooms[0]
       }).catch((e)=>{
         console.log(e.message)
       })
