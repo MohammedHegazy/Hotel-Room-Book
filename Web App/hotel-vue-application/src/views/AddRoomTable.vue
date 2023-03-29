@@ -1,36 +1,51 @@
 <template>
-  {{ categoies() }}
   <div class="addroom">
     <NavBar />
     <div class="container" style="width: fit-content;">
-      <form action="" @submit="onSubmit">
+      <form action="" @submit.prevent="onSubmit">
         <table class="table table-responsive form-section" align="center">
           <thead class="thead-light">
             <tr>
               <th>
-                <p>Number of room</p>
-                <input type="text" class="element" v-model="roomnum" />
+                <p>Room Number:</p>
+                <input type="text" class="element" v-model="room_number" />
               </th>
               <th>
-                <p>Price</p>
+                <p>price</p>
                 <input type="text" class="element" v-model="price" />
               </th>
             </tr>
             <tr>
               <th>
                 <p>Number of people</p>
-                <input type="number" class="element" v-model="numofppl" />
+                <input type="number" class="element" v-model="capacity" />
               </th>
               <th>
                 <p>classification</p>
-                <select class="element">
+                <select class="element" @change="cat_id($event)">
                   <option
                     v-for="roomclass in roomsclass"
-                    :key="roomclass"
+                    :key="roomclass.id"
+                    :value="roomclass.id"
                   >
                     {{ roomclass.name }}
                   </option>
                 </select>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Floor:
+                <input type="text" class="element" v-model="floor" />
+              </th>
+              <th>
+                images
+                <input
+                  type="file"
+                  class="element addfile"
+                  multiple
+                  ref="file"
+                />
               </th>
             </tr>
             <tr>
@@ -45,17 +60,6 @@
                   v-model="description"
                   style="border-radius: 0;"
                 ></textarea>
-              </th>
-            </tr>
-            <tr>
-              <th colspan="2">
-                images
-                <input
-                  type="file"
-                  class="element addfile"
-                  multiple
-                  ref="file"
-                />
               </th>
             </tr>
           </thead>
@@ -79,6 +83,7 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import axios from 'axios'
+import router from '@/router'
 export default {
   name: 'AddRoom',
   components: {
@@ -87,52 +92,74 @@ export default {
   data() {
     return {
       roomsclass: [],
-      description: 'Hello this is vue test',
-      roomnum: '',
+      category_id: '',
+      room_number: '',
+      floor: '',
+      capacity: '',
+      description: '',
       price: '',
-      numofppl: '',
     }
   },
   methods: {
-    categoies(){
+    cat_id(e) {
+      var id = e.target.value
+      this.category_id = id
+    },
+    categoies() {
       axios({
         method: 'get',
-          url :'http://wam3.tech/hotel/public/api/auth/hotel/showCategories' ,
-          params: {
-            'token': localStorage.getItem('token'),
-          }
-      }).then((response)=>{
-        console.log(response.data.data.status)
-        this.roomsclass=response.data.data
-      }).catch((e)=>{
-        console.log(e.message)
+        url: 'http://wam3.tech/hotel/public/api/anyone/showCategories',
+        params: {
+          token: localStorage.getItem('token'),
+        },
       })
+        .then((response) => {
+          console.log(response.data.status)
+          this.roomsclass = response.data.data
+        })
+        .catch((e) => {
+          console.log(e.message)
+        })
     },
-   
-    // selectedItem: function (selectedclass) {
-    //   for (var i = 0; i < this.roomsclass.length; i++) {
-    //     if (this.roomsclass[i].class != selectedclass) {
-    //       this.roomsclass[i].selected = false
-    //     } else {
-    //       this.roomsclass[i].selected = true
-    //     }
-    //   }
-    // },
-    onSubmit(e) {
-      const file = this.$refs.file.files[0]
+    onSubmit() {
+      // const file = this.$refs.file.files[0]
 
-      if (!file) {
-        e.preventDefault()
-        alert('No file chosen')
-        return
-      }
+      // if (!file) {
+      //   e.preventDefault()
+      //   alert('No file chosen')
+      //   return
+      // }
 
-      if (file.size / 1024 ** 2 >= 2) {
-        e.preventDefault()
-        alert('File should be less than 2MB')
-        return
-      }
+      // else if (file.size / 1024 ** 2 >= 2) {
+      //   e.preventDefault()
+      //   alert('File should be less than 2MB')
+      //   return
+      // }
+
+      // else{
+
+      // }
+      axios
+        .post('http://wam3.tech/hotel/public/api/room/action/store', {
+          'token': localStorage.getItem('token'),
+          'category_id': this.category_id,
+          'room_number': this.room_number,
+          'floor': this.floor,
+          'capacity': this.capacity,
+          'description': this.description,
+          'price': this.price,
+        })
+        .then((response) => {
+          console.log(response.data.status)
+          router.push('/rooms')
+        })
+        .catch((e) => {
+          console.log(e)
+        })
     },
+  },
+  beforeMount() {
+    this.categoies()
   },
 }
 </script>

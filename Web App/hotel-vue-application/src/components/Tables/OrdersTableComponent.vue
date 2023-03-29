@@ -1,5 +1,4 @@
 <template>
-  {{ showbooking() }}
   <form action="">
     <div class="container">
       <div style="margin-top: 20px;">
@@ -23,11 +22,7 @@
               <th>number of people</th>
               <th>total price</th>
             </tr>
-            <tr
-              v-for="order in orders"
-              :key="order.id"
-              class="tablerow"
-            >
+            <tr v-for="order in orders" :key="order.id" class="tablerow">
               <th>{{ order.id }}</th>
               <th>{{ order.rooms_id }}</th>
               <th>{{ order.user_id }}</th>
@@ -58,21 +53,26 @@ export default {
   //     )
   //   },
   // },
-  methods:{
-    showbooking(){
+  methods: {
+    showbooking() {
       axios({
-        method:'get',
-        url:'http://wam3.tech/hotel/public/api/auth/hotel/showBookingByStatus',
-        params:{
-          'token':localStorage.getItem('token')
-        }
-      }).then((response)=>{
-        console.log(response.data.status)
-        this.orders=response.data.AcceptBooks
-      }).catch((e)=>{
-        console.log(e.message)
+        method: 'get',
+        url: 'http://wam3.tech/hotel/public/api/auth/hotel/showBookingByStatus',
+        params: {
+          token: localStorage.getItem('token'),
+        },
       })
+        .then((response) => {
+          console.log(response.data.status)
+          this.orders = response.data.AcceptBooks
+        })
+        .catch((e) => {
+          console.log(e.message)
+        })
     },
-  }
+  },
+  beforeMount() {
+    this.showbooking()
+  },
 }
 </script>

@@ -15,7 +15,7 @@
         <!-- card form -->
         <table class="table">
           <thead class="thead-light">
-            <tr class="tablerow" @mouseover="showrooms()">
+            <tr class="tablerow">
               <th>Room number</th>
               <th>Room capacity</th>
               <th>Room floor</th>
@@ -29,14 +29,20 @@
               <th>{{ room.capacity }}</th>
               <th>{{ room.floor }}</th>
               <th>{{ room.price }}</th>
-              <th><router-link to="/editroom" class="clkbtn">Show</router-link></th>
+              <th>
+                <router-link to="/editroom" class="clkbtn">Show</router-link>
+              </th>
               <th><a href="" class="clkbtn">Maintenance</a></th>
               <th><a href="" class="clkbtn">Delete</a></th>
             </tr>
           </thead>
         </table>
         <div class="addroomdiv">
-          <router-link to="/addroom" class="clkbtn" style="margin-bottom: 12px;">
+          <router-link
+            to="/addroom"
+            class="clkbtn"
+            style="margin-bottom: 12px;"
+          >
             Add Room
           </router-link>
         </div>
@@ -62,22 +68,26 @@ export default {
   //     )
   //   },
   // },
-  methods:{
-    showrooms(){
+  methods: {
+    showrooms() {
       axios({
-        method:'get',
-        url:'http://wam3.tech/hotel/public/api/auth/hotel/getRoomsByHotel',
-        params:{
-          'token':localStorage.getItem('token')
-        }
-      }).then((response)=>{
-        console.log(response.data.status)
-        console.log(response)
-        this.rooms=response.data.data.Rooms[0]
-      }).catch((e)=>{
-        console.log(e.message)
+        method: 'get',
+        url: 'http://wam3.tech/hotel/public/api/auth/hotel/getRoomsByHotel',
+        params: {
+          token: localStorage.getItem('token'),
+        },
       })
+        .then((response) => {
+          console.log(response.data.status)
+          this.rooms = response.data.data.Rooms[0]
+        })
+        .catch((e) => {
+          console.log(e.message)
+        })
     },
+  },
+  beforeMount() {
+    this.showrooms()
   },
 }
 </script>
